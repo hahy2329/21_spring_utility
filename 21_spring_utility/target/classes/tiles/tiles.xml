@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 타일즈 설정 dtd 선언문을 작성한다. -->
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+
+<!-- 
+
+
+
+
+
+	# tiles 
+	
+		- tiles3는 뷰페이지의 화면들을 상단, 사이드, 메인, 하단을 설정 상태 분리하여 include 처리해주는 화면구조의 템플릿이다.
+	 	- 공통사용 및 중복되는 페이지들을 분리하여 일괄관리 할 수 있다. 
+	 	- tiles와 유사한 레이아웃 프레임워크는 sitemesh가 있다.
+	
+		[ 구현 예시 ] 
+		
+		1. pom.xml 에 tiles 관련 dependency 추가
+		
+			<dependency>
+		      <groupId>org.apache.tiles</groupId>
+		      <artifactId>tiles-core</artifactId>
+		      <version>3.0.7</version>
+	        </dependency>
+	        <dependency>
+		      <groupId>org.apache.tiles</groupId>
+		      <artifactId>tiles-jsp</artifactId>
+		      <version>3.0.7</version>
+	        </dependency>
+	        <dependency>
+		      <groupId>org.apache.tiles</groupId>
+		      <artifactId>tiles-servlet</artifactId>
+		      <version>3.0.7</version>
+	        </dependency>
+		
+		
+		
+		2. servlet-context.xml 파일에 Tiles View Resolver 추가
+		
+			<beans:bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		        <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		        <beans:property name="order" value="1" />		
+		    </beans:bean>
+	     
+		    <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		        <beans:property name="definitions" value="classpath:tiles/*.xml" />	
+		    </beans:bean>
+			
+			
+			
+		3. tiles설정 xml 지시서 작성
+			
+			1) 선언문 작성
+			<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+		
+			2) definition 정의
+			<tiles-definitions>
+				
+				<definition name="템플릿속성명" 	   template="화면레이아웃.jsp">		
+			 		<put-attribute name="속성명" value="화면상단.jsp"/>	
+			 		<put-attribute name="속성명" value="화면하단.jsp"/>	
+			 		<put-attribute name="속성명" value="화면좌측.jsp"/> 	
+			 	</definition>
+			 	
+			 	<definition name="컨트롤러의 return"  extends="템플릿속성명">	
+			 		<put-attribute name="속성명" value="화면본문.jsp"/>	
+			 		<put-attribute name="속성명" value="화면제목"/>	
+			 	</definition>
+			 	
+			 	<definition name="컨트롤러의 return"  extends="템플릿속성명">	
+			 		<put-attribute name="속성명" value="화면본문.jsp"/>	
+			 		<put-attribute name="속성명" value="화면제목"/>	
+			 	</definition>
+			 	
+			 	<definition name="컨트롤러의 return"  extends="템플릿속성명">	
+			 		<put-attribute name="속성명" value="화면본문.jsp"/>	
+			 		<put-attribute name="속성명" value="화면제목"/>	
+			 	</definition>
+		 	</tiles-definitions>
+		
+		
+		
+		4. 화면 레이아웃 작성
+		
+			1) 태그라이브러리 선언한다.
+			<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %> 
+		
+			2) insertAttribute를 통하여 jsp파일을 조립한다.
+			<tiles:insertAttribute name="속성명"/>								 
+			<tiles:insertAttribute name="속성명"/>								 
+			<tiles:insertAttribute name="속성명"/>								 
+			<tiles:insertAttribute name="속성명"/>								 
+
+
+
+
+
+
+
+
+
+ -->
+ 
+ <tiles-definitions>
+
+ 	<definition name="default" template="/WEB-INF/views/tiles/layout/layout.jsp"> <!-- 일반적으로 화면 레이아웃 -->
+ 	
+ 		<put-attribute name="header" value="/WEB-INF/views/tiles/layout/header.jsp"/><!-- 일반적으로 화면의 상단부(header, top) -->
+ 		<put-attribute name="footer" value="/WEB-INF/views/tiles/layout/footer.jsp"/><!-- 일반적으로 화면의 하단부 (footer, bottom)-->
+ 		<put-attribute name="side" value="/WEB-INF/views/tiles/layout/side.jsp"/><!--일반적으로 화면의 메뉴(menu, side, aside, nav)  -->
+ 	</definition>
+ 	
+ 	<definition name="aaa" extends="default">
+ 		<put-attribute name="content" value="/WEB-INF/views/tiles/tilesEx/content1.jsp">
+ 		
+ 		</put-attribute> <!-- 일반적으로 화면의 본문(content, body, main, article) -->
+ 		<put-attribute name="title" value="본문1"> <!-- 웹페이지의 제목 -->
+ 		</put-attribute>
+ 		
+ 	</definition>
+ 	<definition name="bbb" extends="default">
+ 		<put-attribute name="content" value="/WEB-INF/views/tiles/tilesEx/content2.jsp">
+ 		</put-attribute>
+ 		<put-attribute name="title" value="본문2"> <!-- 웹페이지의 제목 -->
+ 		</put-attribute>
+ 	
+ 	</definition>
+ 	<definition name="ccc" extends="default">
+ 		<put-attribute name="content" value="/WEB-INF/views/tiles/tilesEx/content3.jsp"></put-attribute>
+ 		<put-attribute name="title" value="본문3"> <!-- 웹페이지의 제목 -->
+ 		</put-attribute>
+ 		
+ 	</definition>
+ 
+
+ 
+ 
+ 
+ </tiles-definitions>
