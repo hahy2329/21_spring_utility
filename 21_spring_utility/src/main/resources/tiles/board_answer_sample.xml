@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<definition name="boardLayout_answer_sample" template="/WEB-INF/views/tiles/layout/layout.jsp">		
+ 		<put-attribute name="header" value="/WEB-INF/views/tiles/layout/header.jsp"/>	
+ 		<put-attribute name="footer" value="/WEB-INF/views/tiles/layout/footer.jsp"/>	
+ 		<put-attribute name="side"   value="/WEB-INF/views/tiles/layout/side.jsp"/>
+ 	</definition>
+	
+	<definition name="board/boardList_answer_sample" extends="boardLayout_answer_sample">												
+		<put-attribute name="content" value="/WEB-INF/views/tiles/board/bList.jsp"/> 					
+		<put-attribute name="title"   value="게시글 목록"/> 											
+	</definition>
+	
+	<definition name="board/boardWrite_answer_sample" extends="boardLayout_answer_sample">												
+		<put-attribute name="content" value="/WEB-INF/views/tiles/board/bWrite.jsp"/> 					
+		<put-attribute name="title"   value="게시글 작성"/> 											
+	</definition>
+	
+	<definition name="board/boardUpdate_answer_sample" extends="boardLayout_answer_sample">												
+		<put-attribute name="content" value="/WEB-INF/views/tiles/board/bUpdate.jsp"/> 					
+		<put-attribute name="title"   value="게시글 수정"/> 											
+	</definition>
+	
+	<definition name="board/boardDelete_answer_sample" extends="boardLayout_answer_sample">												
+		<put-attribute name="content" value="/WEB-INF/views/tiles/board/bDelete.jsp"/> 					
+		<put-attribute name="title"   value="게시글 삭제"/> 
+	</definition>
+	
+</tiles-definitions>

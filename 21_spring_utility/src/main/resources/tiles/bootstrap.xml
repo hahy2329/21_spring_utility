@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="bootstrap" template="/WEB-INF/views/tiles/bootstrap/layout/layout.jsp">
+		
+		<put-attribute name="header" value="/WEB-INF/views/tiles/bootstrap/layout/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/bootstrap/layout/footer.jsp"/>
+	</definition>
+	
+	<definition name="/bootstrap/index" extends="bootstrap">
+		<put-attribute name="content" value="/WEB-INF/views/tiles/bootstrap/contents/index.jsp"/>
+		<put-attribute name="title" value="메인화면"/>
+	
+	</definition>
+	<definition name="/bootstrap/ckeckout" extends="bootstrap">
+		<put-attribute name="content" value="/WEB-INF/views/tiles/bootstrap/contents/checkout.jsp"/>
+		<put-attribute name="title" value="체크아웃"/>
+	
+	</definition>
+	
+	
+	<definition name="/bootstrap/shopCart" extends="bootstrap">
+		<put-attribute name="content" value="/WEB-INF/views/tiles/bootstrap/contents/shopCart.jsp"/>
+		<put-attribute name="title" value="장바구니"/>
+	
+	</definition>
+	
+	
+
+
+
+</tiles-definitions>

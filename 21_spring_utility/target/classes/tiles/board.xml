@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="default" template="/WEB-INF/views/tiles/layout/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/layout/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/layout/footer.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/tiles/layout/side.jsp"/>
+	</definition>
+
+	<definition name="write" extends="default">
+ 		<put-attribute name="board" value="/WEB-INF/views/tiles/board/bWrite.jsp">
+ 		
+ 		</put-attribute> <!-- 일반적으로 화면의 본문(content, body, main, article) -->
+ 		<put-attribute name="title" value="작성하기"> <!-- 웹페이지의 제목 -->
+ 		</put-attribute>
+ 		
+ 	</definition>
+ 	
+ 	<definition name="List" extends="default">
+ 		<put-attribute name="board" value="/WEB-INF/views/tiles/board/bList.jsp">
+ 		</put-attribute>
+ 		<put-attribute name="title" value="리스트"> <!-- 웹페이지의 제목 -->
+ 		</put-attribute>
+ 	
+ 	</definition>
+ 	<definition name="update" extends="default">
+ 		<put-attribute name="board" value="/WEB-INF/views/tiles/board/bUpdate.jsp"/>
+ 		<put-attribute name="title" value="수정하기"> <!-- 웹페이지의 제목 -->
+ 		</put-attribute>
+ 		
+ 	</definition>
+ 	
+ 		<definition name="delete" extends="default">
+ 		<put-attribute name="board" value="/WEB-INF/views/tiles/board/bDelete.jsp"/>
+ 		<put-attribute name="title" value="삭제하기"> <!-- 웹페이지의 제목 -->
+ 		</put-attribute>
+ 		
+ 	</definition>
+ 	
+ 	
+
+
+</tiles-definitions>
