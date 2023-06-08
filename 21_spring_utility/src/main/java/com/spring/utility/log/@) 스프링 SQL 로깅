@@ -1,0 +1,68 @@
+
+[ 쿼리 로깅 구현 방법 ]
+
+1. pom.xml파일에 의존성을 추가한다.
+
+ 	<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4 -->
+	<dependency>
+	    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+	    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+	    <version>1.16</version>
+	</dependency>
+	
+2. jdbc.properties파일 수정한다.
+
+	 (수정내용)
+	 2-1)com.mysql.jdbc.Driver   >>>  net.sf.log4jdbc.sql.jdbcapi.DriverSpy (drierClassName수정)
+	 2-1)jdbc:mysql://           >>>  jdbc:log4jdbc:mysql://				(url수정)
+	
+	
+	[ 기본값 설정 ]
+	jdbc.driverClassName=com.mysql.jdbc.Driver
+	jdbc.url=jdbc:mysql://localhost:3306/SPRING_UTILITY?serverTimezone=Asia/Seoul
+	jdbc.username=root
+	jdbc.password=1234			
+	
+	[ 수정된 설정 ]
+	jdbc.driverClassName=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+	jdbc.url=jdbc:log4jdbc:mysql://localhost:3306/SPRING_UTILITY?serverTimezone=Asia/Seoul
+	jdbc.username=root
+	jdbc.password=1234		
+
+
+
+3. log4jdbc.log4j2.properties파일을 src/main/resources위치에 생성후 아래의 설정을 추가한다.
+
+	log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+
+
+
+4. log4j.xml파일에 아래의 설정을 추가하여 시스템의 상황에 맞도록 로깅을 구현한다.
+
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/> 
+	</logger>
+	
+	<logger name="jdbc.sqlonly" additivity="false"> 
+		<level value="warn"/> 
+		<appender-ref ref="console"/> 
+	</logger>
+	
+	<logger name="jdbc.audit" additivity="false"> 
+		<level value="warn"/>  
+		<appender-ref ref="console"/> 
+	</logger> 
+    
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="console"/> 
+	</logger>
+	
+	<logger name="jdbc.resultsettable" additivity="false"> 
+		<level value="warn"/>  
+		<appender-ref ref="console"/> 
+	</logger> 
+
+	- 끝 -
+
